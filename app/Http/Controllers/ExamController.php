@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Exam;
+use App\Question;
 use Auth;
 
 class ExamController extends Controller
@@ -19,12 +20,24 @@ class ExamController extends Controller
     public function delete($exam)
     {
         Exam::find($exam)->delete();
+        Question::where('user_id',$exam)->delete();
         return redirect('exams');
     }
     public function edit(Exam $exam)
     {
     //    $exam = Exam::find($exam);
-        return view('exam.show',compact('exam'));
+        return view('exam.edit',compact('exam'));
+    }
+    public function published(Exam $exam)
+    {
+        $exam->published = 1;
+        $exam->save();
+        return redirect('exams');
+    }
+    public function running()
+    {
+        $exams = Exam::where('published',1)->get();
+        return view('exam.running-exams',compact('exams'));
     }
     public function update(Exam $exam, Request $Request)
     {

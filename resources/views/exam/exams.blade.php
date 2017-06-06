@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="text-left col-md-4">
-                        <a href="#" class="btn btn-sm btn-primary">Running Exam List</a>
+                        <a href="{{ url('exams/running')}}" class="btn btn-sm btn-primary">Running Exam Topics</a>
                     </div>
                     <div class="text-center col-md-4">
                         <b><i>Exam Topics</i></b>
@@ -22,9 +22,14 @@
                             @foreach ($exams as $exam)
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Exam {{ $exam->id }}</label>
-                                <div class="col-sm-2">
-                                    <a href="exams/{{ $exam->id }}/questions/"><p class="form-control-static">{{ $exam->name }}</p></a>
+                                <div class="col-sm-6 form-control-static">
+                                    <a href="exams/{{ $exam->id }}/questions/"><p>{{ $exam->name }}</p></a>
                                 </div>
+                                @if($exam->published)
+                                <div class="text-right col-sm-2 form-control-static">
+                                    <p>Published</p>
+                                </div>
+                                @endif
                                 <a href="exam/{{ $exam->id }}/delete/" class="btn btn-sm btn-danger pull-right">Delete</a>
                                 <a style="margin-right:5px;" href="exam/{{ $exam->id }}/edit" class="btn btn-sm btn-success pull-right">Edit</a>
                             </div>

@@ -7,20 +7,20 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="text-left col-md-4">
-                        <a href="all-question" class="btn btn-sm btn-primary">All Questions</a>
+                        <a href="#" class="btn btn-sm btn-primary">Link</a>
                     </div>
                     <div class="text-center col-md-4">
                         <b><i>Question Input Details</i></b>
                     </div>
                     <div class="text-right">
-                        <a href="#" class="btn btn-sm btn-primary">Question List</a>
+                        <a href="#" class="btn btn-sm btn-primary">Link</a>
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="panel-body col-md-12">
                         <form class="form-horizontal" action="{{url('question/store')}}" method="post">
                             {{ csrf_field() }}
-                            <input type="hidden" name="exam_id" value="{{$id}}">
+                            <input type="hidden" name="exam_id" value="{{$exam}}">
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Question</label>
                                 <div class="col-sm-8">

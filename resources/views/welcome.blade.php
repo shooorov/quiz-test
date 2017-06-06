@@ -84,6 +84,8 @@
 
                 <div class="links">
                     <a href="exams">Exam</a>
+                    <a href="exams/running">Running Exam</a>
+                    <a href="result">Result</a>
                 </div>
             </div>
         </div>
