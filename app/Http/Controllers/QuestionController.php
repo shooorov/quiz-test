@@ -25,8 +25,14 @@ class QuestionController extends Controller
         if($exam->user_id== Auth::user()->id){
             return view('question.questions',compact('questions','exam','published','id'));
         }else {
-            return view('question.answers',compact('questions','exam','published','id'));
+            session(['p' => 0]);
+            session(['i' => 0]);
+            return redirect('exams/'.$exam->id.'/questions/1');
         }
+    }
+    public function question(Exam $exam, Question $question)
+    {
+        return view('question.answers',compact('exam','question'));
     }
     public function create($exam)
     {

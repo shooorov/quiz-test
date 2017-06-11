@@ -17,9 +17,8 @@
                 </div>
                 <div class="panel-body">
                     <div class="panel-body col-md-12 col-md-offset-0">
-                        <form class="form-horizontal" action="{{ url('/exams/'.$exam->id.'/questions/store') }}" method="post">
+                        <form class="form-horizontal" action="{{ url('/exams/'.$exam->id.'/questions/store/answer/'.$question->id.'/') }}" method="post">
                             {{ csrf_field() }}
-                            @foreach ($questions as $question)
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Question {{ $question->id }}</label>
                                 <div class="col-sm-10">
@@ -32,7 +31,7 @@
                                         {{ "A" }}
                                     </div>
                                     <div class="">
-                                        <input type="checkbox" name="q[{{ $id }}][0]" value="{{ $question->curr_ans }}">
+                                        <input type="radio" name="q[]" value="{{ $question->curr_ans }}">
                                     </div>
                                 </label>
                                 <div class="col-sm-10 form-control-static">
@@ -44,7 +43,7 @@
                                         {{ "B" }}
                                     </div>
                                     <div class="">
-                                        <input type="checkbox" name="q[{{ $id }}][1]" value="{{ $question->wrong_ans1 }}">
+                                        <input type="radio" name="q[]" value="{{ $question->wrong_ans1 }}">
                                     </div>
                                 </label>
                                 <div class="col-sm-10 form-control-static">
@@ -56,7 +55,7 @@
                                         {{ "C" }}
                                     </div>
                                     <div class="">
-                                        <input type="checkbox" name="q[{{ $id }}][2]" value="{{ $question->wrong_ans2 }}">
+                                        <input type="radio" name="q[]" value="{{ $question->wrong_ans2 }}">
                                     </div>
                                 </label>
                                 <div class="col-sm-10 form-control-static">
@@ -68,7 +67,7 @@
                                         {{ "D" }}
                                     </div>
                                     <div class="">
-                                        <input type="checkbox" name="q[{{ $id++ }}][3]" value="{{ $question->wrong_ans3 }}">
+                                        <input type="radio" name="q[]" value="{{ $question->wrong_ans3 }}">
                                     </div>
                                 </label>
                                 <div class="col-sm-10 form-control-static">
@@ -76,10 +75,12 @@
                                 </div>
                                 <br>
                             </div>
-                            @endforeach
                             <div class="form-group">
+                                <label class="col-sm-2 control-label pull-right">
+                                    <button type="submit" class="btn btn-sm btn-success">Submit Answer {{$question->id}}</button>
+                                </label>
                                 <label class="col-sm-2 control-label">
-                                    <button type="submit" class="btn btn-sm btn-success">Submit Ans</button>
+                                    <a href="{{ url('/exams/'.$exam->id.'/questions/skip/'.$question->id.'/') }}"class="btn btn-sm btn-success">Skip Q No.{{$question->id}}</a>
                                 </label>
                             </div>
                         </form>
